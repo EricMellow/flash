@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
+import Card from '../Cards/Card'
+import data from '../../questions'
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      cardData: data,
+      score: 0,
+    }
+  }
 
   getRandomCard() {
     const cards = this.state.cardData.map((card, index) => {
@@ -20,12 +29,21 @@ class App extends Component {
 
     return cards[index]
   }
+
+  addPoint = () => {
+    let newScore = this.state.score
+    this.setState({
+      score: newScore += 1
+    })
+  }
+
   render() {
     const card = this.getRandomCard();
 
     return(
       <div className="Flash">
-        <h1>FLASH</h1>
+        <h2>Total Points: {this.state.score}</h2>
+        {card}
       </div>
     )
   }
