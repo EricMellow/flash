@@ -62,11 +62,11 @@ class App extends Component {
             }
           })
         }
-    })
+      })
       this.setState({
         selectedCards: filteredCards
       })
-  }
+    }
   }
 
   render() {
@@ -74,8 +74,14 @@ class App extends Component {
 
     return(
       <div className="Flash">
-        <h2>Total Points: {this.state.score}</h2>
-        {card}
+        <header>
+        <h1 aria-label="Applcation name"><i>Flash</i> Cards</h1>
+        <h2 aria-label="Total points">Total Points: {this.state.score}</h2>
+        </header>
+        <main>
+          <Sidebar filterCards={this.filterCards}/>
+          {card}
+        </main>
       </div>
     )
   }
