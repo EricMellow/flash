@@ -1,33 +1,42 @@
 import React, { Component } from 'react';
 import './App.css';
 import Card from '../Cards/Card'
+import Sidebar from '../Sidebar/Sidebar'
 import data from '../../questions'
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      cardData: data,
+      cardData: this.formatCards(),
       score: 0,
+      selectedCards: []
     }
   }
 
-  getRandomCard() {
-    const cards = this.state.cardData.map((card, index) => {
+  formatCards() {
+    const cards = data.map((card, index) => {
       return (
         <Card
           key={index}
           category={card.category}
           question={card.question}
           answer={card.answer}
-          addPoint={this.addPoint}
+          updateScore={this.updateScore}
         />
       );
-    });
+    })
+    return cards
+  }
 
-    const index = Math.floor(Math.random() * ((cards.length - 1) - 0 + 1)) + 0
+  getRandomCard() {
+    let stateKey = 'selectedCards'
+    if (!this.state.selectedCards.length) {
+      stateKey = 'cardData'
+    } 
+    const index = Math.floor(Math.random() * ((this.state[stateKey].length - 1) - 0 + 1)) + 0
 
-    return cards[index]
+    return this.state[stateKey][index]
   }
 
   updateScore = (score) => {
