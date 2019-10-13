@@ -33,8 +33,27 @@ class App extends Component {
   addPoint = () => {
     let newScore = this.state.score
     this.setState({
-      score: newScore += 1
+  filterCards = (sidebarState) => {
+    if (!Object.values(sidebarState).includes(true)) {
+      this.setState({
+        selectedCards: this.formatCards()
+      })
+    } else {
+      const stateKeys = Object.keys(sidebarState)
+      const filteredCards = []
+      stateKeys.forEach(key => {
+        if (sidebarState[key] === true) {
+          this.state.cardData.forEach(card => {
+            if (card.props.category === key) {
+              filteredCards.push(card)
+            }
+          })
+        }
     })
+      this.setState({
+        selectedCards: filteredCards
+      })
+  }
   }
 
   render() {
