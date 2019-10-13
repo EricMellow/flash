@@ -30,9 +30,13 @@ class App extends Component {
     return cards[index]
   }
 
-  addPoint = () => {
+  updateScore = (score) => {
     let newScore = this.state.score
     this.setState({
+      score: newScore += score
+    })
+  }
+
   filterCards = (sidebarState) => {
     if (!Object.values(sidebarState).includes(true)) {
       this.setState({
