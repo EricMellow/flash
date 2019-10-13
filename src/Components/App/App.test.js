@@ -27,8 +27,8 @@ describe('App', () => {
   describe('formatCards', () => {
 
     it('returns an array of 30 cards', () => {
-      const expected = wrapper.instance().formatCards()
-      expect(expected.length).toEqual(30)
+      const expected = wrapper.instance().formatCards();
+      expect(expected.length).toEqual(30);
     })
   })
 
@@ -38,18 +38,18 @@ describe('App', () => {
       wrapper.instance().setState({
         selectedCards: data
       })
-      const randomCard = wrapper.instance().getRandomCard()
-      const expected = wrapper.state('selectedCards').includes(randomCard)
-      expect(expected).toEqual(true)
+      const randomCard = wrapper.instance().getRandomCard();
+      const expected = wrapper.state('selectedCards').includes(randomCard);
+      expect(expected).toEqual(true);
     })
 
     it('returns a random card from state.cardData if state.selectedCards does not have length', () => {
       wrapper.instance().setState({
         selectedCards: []
       })
-      const randomCard = wrapper.instance().getRandomCard()
-      const expected = wrapper.state('cardData').includes(randomCard)
-      expect(expected).toEqual(true)
+      const randomCard = wrapper.instance().getRandomCard();
+      const expected = wrapper.state('cardData').includes(randomCard);
+      expect(expected).toEqual(true);
     })
   })
 
@@ -57,7 +57,7 @@ describe('App', () => {
 
     it('should add the score it is sent as an argument to the score in state', () => {
       expect(wrapper.state('score')).toEqual(0);
-      wrapper.instance().updateScore(1)
+      wrapper.instance().updateScore(1);
       expect(wrapper.state('score')).toEqual(1);
     })
   })
@@ -71,13 +71,13 @@ describe('App', () => {
     })
 
     it('should set selectedCards with cards that match sidebarState keys that have a true value', () => {
-      expect(wrapper.state('selectedCards').length).toEqual(0)
+      expect(wrapper.state('selectedCards').length).toEqual(0);
 
-      wrapper.instance().filterCards({ Animals: true, Earth: false })
-      expect(wrapper.state('selectedCards').length).toEqual(5)
-      
-      wrapper.instance().filterCards({Animals: true, Earth: true})
-      expect(wrapper.state('selectedCards').length).toEqual(10)
+      wrapper.instance().filterCards({ Animals: true, Earth: false });
+      expect(wrapper.state('selectedCards').length).toEqual(5);
+
+      wrapper.instance().filterCards({Animals: true, Earth: true});
+      expect(wrapper.state('selectedCards').length).toEqual(10);
     })
 
   })
